@@ -15,9 +15,7 @@ describe("API SERVER TEST: ", () => {
     let res = await mockReq.post("/");
     expect(res.status).toEqual(404);
   });
-});
 
-describe("CRUD TEST: ", () => {
   it("Should create a record using POST", async () => {
     let res = await mockReq.post("/food").send(foodTest);
     expect(res.status).toEqual(201);
