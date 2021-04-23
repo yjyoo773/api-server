@@ -10,6 +10,7 @@ const errors = require("./error-handlers/500");
 const logger = require("./middleware/logger");
 const foodRouter = require('./routes/food')
 const clothesRouter = require('./routes/clothes')
+const router = require("./routes/v1")
 // GLOBAL MIDDLEWARE
 app.use(express.json());
 app.use(logger);
@@ -21,7 +22,7 @@ app.get('/',(req,res)=>{
     res.send('hello world')
 })
 
-
+app.use("/api/v1/:path",router)
 
 // ERROR HANDLERS
 app.use("*", notFoundHandler);
