@@ -3,22 +3,21 @@
 const supergoose = require("@code-fellows/supergoose");
 const { server } = require("../src/server");
 const mockReq = supergoose(server);
-const foodModel = require("../src/models/food");
-const GenericCollection = require("../src/models/data-collection-class");
-const food = new GenericCollection(foodModel);
 
 describe("API SERVER TEST: ", () => {
   var foodTest = { name: "test1", calories: 999999 };
-    it("404 on a bad route", async () => {
-      let res = await mockReq.get("/foo");
-      expect(res.status).toEqual(404);
-    });
+  it("404 on a bad route", async () => {
+    let res = await mockReq.get("/foo");
+    expect(res.status).toEqual(404);
+  });
 
-    it("404 on a bad method", async () => {
-      let res = await mockReq.post("/");
-      expect(res.status).toEqual(404);
-    });
+  it("404 on a bad method", async () => {
+    let res = await mockReq.post("/");
+    expect(res.status).toEqual(404);
+  });
+});
 
+describe("CRUD TEST: ", () => {
   it("Should create a record using POST", async () => {
     let res = await mockReq.post("/food").send(foodTest);
     expect(res.status).toEqual(201);
@@ -57,7 +56,6 @@ describe("API SERVER TEST: ", () => {
     let res = await mockReq.delete(`/food/${id}`);
     expect(res.status).toEqual(200);
     let getResponse = await mockReq.get(`/food/${id}`);
-    // console.log(getResponse.body)
     expect(getResponse.body).toEqual(null);
   });
 });

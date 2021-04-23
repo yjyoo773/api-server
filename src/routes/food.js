@@ -7,7 +7,6 @@ const foodRouter = express.Router()
 
 const food =  new GenericCollection(foodModel)
 
-
 foodRouter.get('/food',getAll)
 foodRouter.get('/food/:id',getOne)
 foodRouter.post('/food',createItem)
