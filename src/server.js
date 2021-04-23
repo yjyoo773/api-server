@@ -9,13 +9,14 @@ const notFoundHandler = require("./error-handlers/404");
 const errors = require("./error-handlers/500");
 const logger = require("./middleware/logger");
 const foodRouter = require('./routes/food')
-
+const clothesRouter = require('./routes/clothes')
 // GLOBAL MIDDLEWARE
 app.use(express.json());
 app.use(logger);
 
 // ROUTES
 app.use(foodRouter)
+app.use(clothesRouter)
 app.get('/',(req,res)=>{
     res.send('hello world')
 })
