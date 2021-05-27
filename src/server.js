@@ -2,6 +2,7 @@
 
 // 3RD PARTY DEPENDENCIES
 const express = require("express");
+const cors = require('cors');
 const app = express();
 
 // INTERNAL MODULES
@@ -10,8 +11,9 @@ const errors = require("./error-handlers/500");
 const logger = require("./middleware/logger");
 const foodRouter = require('./routes/food')
 const clothesRouter = require('./routes/clothes')
-const router = require("./routes/v1")
+const {router,modelRouter} = require("./routes/v1")
 // GLOBAL MIDDLEWARE
+app.use(cors())
 app.use(express.json());
 app.use(logger);
 
@@ -22,7 +24,8 @@ app.get('/',(req,res)=>{
     res.send('hello world')
 })
 
-app.use("/api/v1/:path",router)
+app.use('/api/v1/',router)
+app.use('/api')
 
 // ERROR HANDLERS
 app.use("*", notFoundHandler);
