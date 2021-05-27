@@ -24,8 +24,8 @@ app.get('/',(req,res)=>{
     res.send('hello world')
 })
 
-app.use('/api/v1/',router)
-app.use('/api')
+// app.use('/api/v1/',router)
+// app.use('/api')
 
 // ERROR HANDLERS
 app.use("*", notFoundHandler);
