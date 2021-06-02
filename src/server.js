@@ -11,6 +11,7 @@ const errors = require("./error-handlers/500");
 const logger = require("./middleware/logger");
 const foodRouter = require('./routes/food')
 const clothesRouter = require('./routes/clothes')
+const todoRouter = require('./routes/todo')
 const {router,modelRouter} = require("./routes/v1")
 // GLOBAL MIDDLEWARE
 app.use(cors())
@@ -20,6 +21,7 @@ app.use(logger);
 // ROUTES
 app.use(foodRouter)
 app.use(clothesRouter)
+app.use(todoRouter)
 app.get('/',(req,res)=>{
     res.send('hello world')
 })
